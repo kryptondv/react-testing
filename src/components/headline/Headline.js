@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Headline extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { header, desc } = this.props;
@@ -19,4 +17,9 @@ export default class Headline extends Component {
       </div>
     );
   }
+}
+
+Headline.propTypes = {
+  header: PropTypes.string,
+  desc: PropTypes.string
 }

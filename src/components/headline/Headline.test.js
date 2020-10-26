@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Headline from './Headline';
 
-import { findByTestAtr } from '../../../utils';
+import { findByTestAtr, checkProps } from '../../../utils';
 
 const setUp = (props = {}) => {
   const component = shallow(<Headline {...props} />);
@@ -10,6 +10,19 @@ const setUp = (props = {}) => {
 };
 
 describe('Headline Component', () => {
+  describe('Check PropTypes', () => {
+    test('Should not throw a warning', () => {
+      const expectedProps = {
+        header: 'Test Header',
+        desc: 'Test description',
+      };
+
+      const propsErr = checkProps(Headline, expectedProps);
+
+      expect(propsErr).toBeUndefined();
+    });
+  });
+
   describe('Have props', () => {
     let wrapper;
     beforeEach(() => {
@@ -21,19 +34,19 @@ describe('Headline Component', () => {
     });
 
     test('Should render without errors', () => {
-      const component = findByTestAtr(wrapper, 'HeadlineComponent')
+      const component = findByTestAtr(wrapper, 'HeadlineComponent');
       expect(component.length).toBe(1);
-    })
+    });
 
     test('Should render a h1', () => {
-      const h1 = findByTestAtr(wrapper, 'title')
+      const h1 = findByTestAtr(wrapper, 'title');
       expect(h1.length).toBe(1);
-    })
+    });
 
     test('Should render description', () => {
-      const desc = findByTestAtr(wrapper, 'desc')
+      const desc = findByTestAtr(wrapper, 'desc');
       expect(desc.length).toBe(1);
-    })
+    });
   });
 
   describe('Have no props', () => {
