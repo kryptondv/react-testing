@@ -1,6 +1,6 @@
 import { types } from '../../actions/types.js';
 
-export default (state = [], action) => {
+const postsReducer = (state = [], action) => {
   switch (action.type) {
     case types.GET_POSTS:
       return action.payload;
@@ -8,3 +8,5 @@ export default (state = [], action) => {
       return state;
   }
 };
+
+export default  postsReducer;
