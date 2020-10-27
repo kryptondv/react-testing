@@ -4,7 +4,7 @@ import Button from './Button';
 
 import { findByTestAtr, checkProps } from '../../../utils';
 
-describe('Button Componnent', () => {
+describe('Button Component', () => {
   describe('Checking Proptypes', () => {
     test('Should not throw a warning', () => {
       const expectedProps = {
@@ -19,10 +19,12 @@ describe('Button Componnent', () => {
 
   describe('Renders', () => {
     let wrapper;
+    let mockFunc;
     beforeEach(() => {
+      mockFunc = jest.fn();
       const props = {
         buttonText: 'Button text',
-        handler: () => {},
+        handler: mockFunc,
       };
       wrapper = shallow(<Button {...props} />);
     });
@@ -30,6 +32,13 @@ describe('Button Componnent', () => {
     test('Should Render', () => {
       const button = findByTestAtr(wrapper, 'buttonComponent');
       expect(button.length).toBe(1);
+    });
+
+    test('Should call callback on click', () => {
+      const button = findByTestAtr(wrapper, 'buttonComponent');
+      button.simulate('click');
+      const timesCalled = mockFunc.mock.calls.length;
+      expect(timesCalled).toBe(1);
     });
   });
 });
