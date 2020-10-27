@@ -13,7 +13,7 @@ const App = ({ posts, fetchPosts}) => {
     fetchPosts();
   }
   return (
-    <div className="App">
+    <div className="App" data-test="appComponent">
       <Header />
       <main className="main">
         <Headline header="Posts" desc="Click button to render posts"/>
